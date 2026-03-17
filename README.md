@@ -1,103 +1,40 @@
-**📘 SMART HOMEWORK HELPER**
+**📚 MCTS-Based AI Homework Assistant**
 
-An AI-powered homework assistant that helps students get step-by-step explanations for any question.
-It can also read and understand your uploaded PDF notes to give context-based answers — just like a personalized tutor!
+An AI-powered system that combines Retrieval-Augmented Generation (RAG) with Monte Carlo Tree Search (MCTS) to generate accurate and well-reasoned answers from uploaded documents.
 
-**🚀 Overview**
+**🚀 Features**
 
-The Smart Homework Helper uses the power of Google Gemini (Generative AI) and LangChain to make studying easier.
-You can ask any question — from math problems to science concepts — and even upload your class notes in PDF format.
-The system will extract information from your notes, search Wikipedia if needed, and give you a clear, easy-to-understand explanation.
+📄 Upload PDF documents and ask questions
 
-🎯 **Features**
+🌳 Advanced reasoning using MCTS and its variations
 
-📚 PDF Upload Support – Upload your handwritten or class notes in PDF format.
+🔍 Retrieval using FAISS vector database
 
-🧠 Context-Aware Answers – The model learns from your uploaded notes.
+🧠 Local LLM support using Ollama
 
-🌐 Wikipedia Integration – Automatically fetches factual information from Wikipedia.
+📊 Supports multiple reasoning strategies:
 
-💬 Step-by-Step Explanations – Generates simple and detailed answers for better understanding.
+Standard MCTS
 
-🧮 Python Tool Access – Allows the agent to run simple calculations or Python code internally.
+R-MCTS
 
-⚡ Real-Time Response – Instant replies through the integrated ChatGoogleGenerativeAI model.
+MCTS-RAG
 
-**🏗️ Tech Stack**
+World Guided MCTS
 
-Frontend: HTML, CSS & Flask UI
+**🏗️ System Architecture**
 
-Backend: Python
+PDF Upload → Text Extraction
 
-Framework: LangChain
+Text Chunking → Embedding Generation
 
-AI Model: Google Gemini (via langchain_google_genai)
+FAISS Vector Storage
 
-Embeddings: HuggingFace and Google Generative AI Embeddings
+User Query Input
 
-Vector Store: FAISS for semantic search and retrieval
+Context Retrieval (RAG)
 
-Document Loader: PyPDFLoader for reading PDF files
+MCTS-Based Reasoning
 
-Text Splitter: RecursiveCharacterTextSplitter for breaking large documents into smaller chunks
-
-**⚙️ How It Works**
-
-Upload Notes
-
-The user uploads a PDF file of their notes.
-
-The file is processed using PyPDFLoader.
-
-Text Chunking & Embedding
-
-The text is split into smaller chunks.
-
-Each chunk is converted into a numeric embedding using HuggingFace embeddings.
-
-Vector Database (FAISS)
-
-All chunks are stored in a FAISS vector database for fast retrieval.
-
-Retriever-Augmented Generation (RAG)
-
-When you ask a question, the retriever finds the most relevant chunks from your notes.
-
-The Gemini model uses these chunks to generate an accurate, step-by-step answer.
-
-Fallback to Wikipedia
-
-If no notes are uploaded, the model fetches data directly from Wikipedia or runs simple Python code when needed.
-
-**🔑 Environment Setup**
-
-You must set your Google API Key to use the Gemini model.
-
-In your terminal, run:
-set GOOGLE_API_KEY="AIzaSyDJx6Qkp6xa7r1I-3Fb5w68RyqBadL74_s"      # Windows
-
-Or directly inside the code (already included):
-
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDJx6Qkp6xa7r1I-3Fb5w68RyqBadL74_s"
-
-**🧠 Learning Outcomes**
-
-Learned how to integrate LLMs (Gemini) with LangChain.
-
-Understood Retrieval-Augmented Generation (RAG) pipeline.
-
-Implemented document processing using PyPDFLoader and FAISS.
-
-Designed an interactive AI-powered assistant with real-time reasoning.
-
-Explored embeddings, retrievers, and agent-based architectures in AI systems.
-
-**🖼️ Output Preview**
-
-1️⃣ Upload PDF Notes 
-2️⃣ Ask Any Homework Question
-3️⃣ Get Instant Step-by-Step Answers
-
-**📜 License**
-
-This project is open-source and free to use for educational purposes.
+Final Answer Generation using LLM
+base is created after PDF upload
