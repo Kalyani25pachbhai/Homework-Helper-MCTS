@@ -12,89 +12,103 @@ A Flask-based homework helper that uses LangChain, FAISS, and Google's Generativ
 
 ## Setup
 
-### 1. Get a Google API Key
+**1. Prerequisites**
 
-1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
-2. Click "Create API Key"
-3. Copy your API key
+Make sure you have the following installed:
 
-### 2. Set Up the API Key
+Python (>= 3.9)
 
-**Option A: Using Environment Variable (Recommended)**
-```bash
-# Windows (PowerShell)
-$env:GOOGLE_API_KEY = "your_api_key_here"
+pip (Python package manager)
 
-# Windows (Command Prompt)
-set GOOGLE_API_KEY=your_api_key_here
+Git
 
-# Mac/Linux
-export GOOGLE_API_KEY=your_api_key_here
-```
+Ollama (for running LLM locally)
 
-**Option B: Using .env File**
-```bash
-# Copy the example file
-cp .env.example .env
+**2. Install Ollama**
 
-# Edit .env and replace with your actual key
-GOOGLE_API_KEY=your_api_key_here
-```
+Download and install Ollama from:
+👉 https://ollama.com/download
 
-### 3. Install Dependencies
+After installation, pull the required models:
 
-```bash
+ollama pull llama3.2:1b
+ollama pull nomic-embed-text
+
+**3. Create Virtual Environment**
+python -m venv venv
+
+Activate it:
+
+Windows:
+
+venv\Scripts\activate
+
+Mac/Linux:
+
+source venv/bin/activate
+
+**4. Install Dependencies**
 pip install -r requirements.txt
-```
 
-### 4. Run the App
+If requirements.txt is not available, install manually:
 
-```bash
+pip install flask langchain langchain-core langchain-community langchain-ollama faiss-cpu pypdf
+
+**5. Run the Application**
 python app.py
-```
 
-Then open your browser to: **http://127.0.0.1:5000**
+**6. Open in Browser**
 
-## Usage
+Go to:
 
-1. **Ask Without PDF**: Simply type your question and click "Ask" to get answers using general knowledge
-2. **Upload & Ask**: 
-   - Click "Choose File" and select a PDF
-   - Type your question
-   - Click "Ask" - the AI will search your PDF for relevant information
+http://127.0.0.1:5000/
 
-## Troubleshooting
+**7. How to Use**
 
-### "Google API key is not set"
-- Make sure you've set the `GOOGLE_API_KEY` environment variable
-- Restart the app after setting the environment variable
+Upload a PDF document
 
-### "Google API key is invalid or suspended"
-- Your API key may have expired or been revoked
-- Get a new key from https://aistudio.google.com/app/apikey
-- Update your environment variable or .env file
+Enter your question
 
-### "Permission denied: CONSUMER_SUSPENDED"
-- Your Google project has been suspended
-- Create a new project in Google Cloud Console
-- Generate a new API key
+Get answers using:
 
-## Technologies Used
+Basic RAG
 
-- **Flask**: Web framework
-- **LangChain**: LLM framework and orchestration
-- **Google Generative AI**: Gemini API for responses and embeddings
-- **FAISS**: Vector similarity search
-- **PyPDF**: PDF document loading
-- **MCTS**: Monte Carlo Tree Search for exploration
+MCTS-based reasoning
 
-## Architecture
+Different MCTS variations
 
-- `app.py`: Main Flask application
-- `static/style.css`: UI styling
-- `templates/index.html`: Main interface
-- `templates/mcts.html`: MCTS interface
+**8. MCTS Exploration**
 
-## License
+Navigate to:
 
-MIT
+http://127.0.0.1:5000/mcts
+
+Enter question
+
+Select variation:
+
+Standard MCTS
+
+R-MCTS
+
+MCTS-RAG
+
+World Guided MCTS
+
+View step-by-step reasoning
+
+**9. Project Structure**
+├── app.py              # Main Flask application
+├── templates/
+│   ├── index.html     # Main UI
+│   └── mcts.html      # MCTS visualization UI
+├── static/            # CSS/JS files
+├── requirements.txt   # Dependencies
+
+**10. Notes**
+
+Ensure Ollama is running in the background
+
+First run may take time due to model loading
+
+FAISS database is created dynamically after PDF upload
